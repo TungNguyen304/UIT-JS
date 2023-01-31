@@ -1,0 +1,88 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+   
+    
+ 
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      # Runs a single command using the runners shell
+      - name: init project node
+        run: npm init --yes
+       
+      - name: install package
+        run: npm i --save-dev eslint eslint-config-google
+        
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo '{
+              "env":{
+                  "browser":true,
+                  "es2021":true
+              },
+              "extends":[
+                  "google"
+              ],
+              "parserOptions":{
+                  "ecmaVersion":13
+              },
+              "rules":{
+                  "require-jsdoc":0,
+                  "valid-jsdoc":0,
+                  "indent":[
+                    "error",
+                    2,
+                    {
+                        "FunctionDeclaration":{
+                          "body":1,
+                          "parameters":2
+                        }
+                    }
+                  ],
+                  "no-trailing-spaces":[
+                    "error",
+                    {
+                        "ignoreComments":true
+                    }
+                  ],
+                  "max-len": [
+                    "error", 
+                    { 
+                      "ignoreComments": true,
+                      "ignoreUrls": true,
+                      "ignoreStrings": true,
+                      "ignoreTemplateLiterals": true,
+                      "ignoreRegExpLiterals": true  
+                    }
+                  ]
+              }
+            }' > eslintrc.json
+            
+      #run test
+      - run: npx eslint -c eslintrc.json source
