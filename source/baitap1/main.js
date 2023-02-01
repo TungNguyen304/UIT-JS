@@ -8,11 +8,11 @@ const verifyEmail = /^\S+@([a-zA-Z]+\.)+[a-zA-z]{2,4}$/;
 const errEmail = $('.email p');
 const errPassword = $('.pass p');
 
-let limit = 3,
-  limit2 = 3;
-  time = 10,
-  time2 = 10;
-  waiting = null;
+let limit = 3;
+const  limit2 = 3;
+let time = 10;
+let time2 = 10;
+let waiting = null;
 
 showIcon.onclick = () => {
   if (password.type === 'text') {
@@ -102,17 +102,17 @@ window.onload = () => {
 };
 
 function waitingMethod() {
-    time--;
-      if (time === -1) {
-        submitBtn.textContent = 'Sign in';
-        submitBtn.style.backgroundColor = '#377BFF';
-        submitBtn.style.pointerEvents = 'unset';
-        limit = limit2;
-        time = time2;
-        clearInterval(waiting);
-      } else {
-        submitBtn.textContent = time + ' s';
-        submitBtn.style.backgroundColor = '#929fbb';
-        submitBtn.style.pointerEvents = 'none';
-      }
+  time--;
+  if (time === -1) {
+    submitBtn.textContent = 'Sign in';
+    submitBtn.style.backgroundColor = '#377BFF';
+    submitBtn.style.pointerEvents = 'unset';
+    limit = limit2;
+    time = time2;
+    clearInterval(waiting);
+  } else {
+    submitBtn.textContent = time + ' s';
+    submitBtn.style.backgroundColor = '#929fbb';
+    submitBtn.style.pointerEvents = 'none';
+  }
 }
