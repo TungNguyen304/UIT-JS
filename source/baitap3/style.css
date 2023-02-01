@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap {
+    width: 400px;
+    padding: 15px;
+    box-shadow: 0 0 10px 2px #ccc;
+
+}
+
+.screen img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.action {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.action button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
