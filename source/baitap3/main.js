@@ -31,7 +31,7 @@ start.onclick = () => {
       } while (true);
       index = randomNumber;
       screen.src = './images/' + imgList[randomNumber];
-    }, 1000);
+    }, 3000);
   }
 };
 
