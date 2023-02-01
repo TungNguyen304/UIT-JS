@@ -9,9 +9,9 @@ const errEmail = $('.email p');
 const errPassword = $('.pass p');
 
 let limit = 3;
-const  limit2 = 3;
+const limit2 = 3;
 let time = 10;
-let time2 = 10;
+const time2 = 10;
 let waiting = null;
 
 showIcon.onclick = () => {
@@ -88,7 +88,7 @@ submitBtn.onclick = (e) => {
 };
 
 window.onunload = () => {
-  if(limit === 0) {
+  if (limit === 0) {
     localStorage.setItem('wait', time);
   }
 };
