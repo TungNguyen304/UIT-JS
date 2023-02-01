@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,40 @@
     <link rel="stylesheet" href="./style.css">
     <title>Bai tap 2</title>
 </head>
+
 <body>
-    <div class="container"></div>
+    <div class="container">
+        <div class="form">
+            <form action="">
+                <div class="form_item">
+                    <label for="text">Select text color</label>
+                    <div><input value="#D23332" type="color" id="text"></div>
+                </div>
+                <div class="form_item">
+                    <label for="background">Select background color</label>
+                    <div><input value="#6EE2A1" type="color" id="background"></div>
+                </div>
+                <div class="form_item form__content">
+                    <label for="content">Input content</label>
+                    <textarea name="" id="content" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form_item">
+                    <label for="style">Select style</label>
+                    <div class="style">
+                        <input type="button" value="Italic">
+                        <input type="button" value="Bold">
+                        <input type="button" value="Underline">
+                    </div>
+                </div>
+                <div class="screen">
+                    Input text here
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <script src="./main.js"></script>
 </body>
+
 </html>
