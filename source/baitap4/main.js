@@ -1,20 +1,20 @@
 const $$ = document.querySelectorAll.bind(document);
 const $ = document.querySelector.bind(document);
 
-const upload = $(".upload input");
-const uploadButton = $(".upload");
-const avt = $(".upload img");
-const desc = $(".upload p");
-const infoList = $$(".form_item input");
-const addBtn = $(".action .add");
-const resetBtn = $(".action .reset");
-const infoListShow = $$(".info_item span");
-const avtShow = $(".screen_avt img");
-const descShow = $(".screen_avt p");
-const error = $("form>p");
-const textError = $("form>p span");
+const upload = $('.upload input');
+const uploadButton = $('.upload');
+const avt = $('.upload img');
+const desc = $('.upload p');
+const infoList = $$('.form_item input');
+const addBtn = $('.action .add');
+const resetBtn = $('.action .reset');
+const infoListShow = $$('.info_item span');
+const avtShow = $('.screen_avt img');
+const descShow = $('.screen_avt p');
+const error = $('form>p');
+const textError = $('form>p span');
 
-let url = "";
+let url = '';
 const verifyEmail = /^\S+@([a-zA-Z]+\.)+[a-zA-z]{2,4}$/;
 const verifyPhone = /^0[0-9]{9}$/;
 const verifyBirthday = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
@@ -28,14 +28,14 @@ uploadButton.onclick = () => {
 
 upload.onchange = (e) => {
   url = URL.createObjectURL(e.target.files[0]);
-  uploadButton.style.border = "1px solid black";
+  uploadButton.style.border = '1px solid black';
   avt.src = url;
-  desc.style.display = "none";
+  desc.style.display = 'none';
 };
 
 addBtn.onclick = (e) => {
   e.preventDefault();
-  let warning = "Xin hãy nhập đầy đủ thông tin!";
+  let warning = 'Xin hãy nhập đầy đủ thông tin!';
   const Person = {
     fullname: infoList[0].value,
     email: infoList[1].value,
@@ -54,48 +54,48 @@ addBtn.onclick = (e) => {
 
   infoList.forEach((item) => {
     if (!validate && !item.value) {
-      item.style.border = "1px solid red";
+      item.style.border = '1px solid red';
     } else {
-      item.style.border = "1px solid black";
+      item.style.border = '1px solid black';
     }
   });
 
   const validate1 =
     validate &&
     Object.keys(Person).every((item) => {
-      if (item === "fullname") {
+      if (item === 'fullname') {
         if (!verifyName.test(Person[item])) {
-          warning = "Full name không hợp lệ.";
+          warning = 'Full name không hợp lệ.';
           return false;
         }
       } else {
-        if (item === "email") {
+        if (item === 'email') {
           if (!verifyEmail.test(Person[item])) {
-            warning = "Email không hợp lệ.";
+            warning = 'Email không hợp lệ.';
             return false;
           }
         } else {
-          if (item === "phone") {
+          if (item === 'phone') {
             if (!verifyPhone.test(Person[item])) {
-              warning = "Phone không hợp lệ.";
+              warning = 'Phone không hợp lệ.';
               return false;
             }
           } else {
-            if (item === "birthday") {
+            if (item === 'birthday') {
               if (!verifyBirthday.test(Person[item])) {
-                warning = "Birthday phải có dạng dd/mm/YYYY.";
+                warning = 'Birthday phải có dạng dd/mm/YYYY.';
                 return false;
               }
             } else {
-              if (item === "password") {
+              if (item === 'password') {
                 if (!verifyPass.test(Person[item])) {
                   warning =
-                    "Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.";
+                    'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.';
                   return false;
                 }
               } else {
-                if (Person[item] !== Person["password"]) {
-                  warning = "Confirm password không khớp.";
+                if (Person[item] !== Person['password']) {
+                  warning = 'Confirm password không khớp.';
                   return false;
                 }
               }
@@ -109,8 +109,8 @@ addBtn.onclick = (e) => {
   let validate2 = false;
   if (validate1) {
     if (!upload.files[0]) {
-      warning = "Chọn avt trước khi add.";
-      uploadButton.style.border = "1px solid red";
+      warning = 'Chọn avt trước khi add.';
+      uploadButton.style.border = '1px solid red';
       validate2 = false;
     } else {
       validate2 = true;
@@ -119,56 +119,56 @@ addBtn.onclick = (e) => {
   if (validate2) {
     Object.keys(Person).forEach((item, index) => {
       if (infoListShow[index]) {
-        if (item === "fullname") {
-          let listName = Person[item].split(" ");
+        if (item === 'fullname') {
+          let listName = Person[item].split(' ');
           listName = listName.map((i, index) => {
             const name = i.toLowerCase();
             return name.replace(name[0], name.charAt(0).toUpperCase());
           });
-          infoListShow[index].textContent = listName.join(" ");
+          infoListShow[index].textContent = listName.join(' ');
         } else {
-          if (item === "phone") {
+          if (item === 'phone') {
             infoListShow[index].textContent =
               Person[item].slice(0, 3) +
-              "-" +
+              '-' +
               Person[item].slice(3, 6) +
-              "-" +
+              '-' +
               Person[item].slice(6);
           } else {
             infoListShow[index].textContent = Person[item];
           }
         }
       }
-      infoList[index].value = "";
+      infoList[index].value = '';
     });
-    avt.src = "";
-    desc.style.display = "unset";
+    avt.src = '';
+    desc.style.display = 'unset';
     if (url) {
       avtShow.src = url;
     }
     upload.value = null;
-    error.style.display = "none";
+    error.style.display = 'none';
   } else {
     textError.textContent = warning;
-    error.style.display = "block";
+    error.style.display = 'block';
   }
 };
 
 resetBtn.onclick = () => {
   infoList.forEach((item, index) => {
     if (infoListShow[index]) {
-      infoListShow[index].textContent = "";
+      infoListShow[index].textContent = '';
     }
-    item.value = "";
+    item.value = '';
   });
-  avt.src = "";
-  desc.style.display = "unset";
-  avtShow.src = "";
-  descShow.style.display = "unset";
+  avt.src = '';
+  desc.style.display = 'unset';
+  avtShow.src = '';
+  descShow.style.display = 'unset';
   upload.value = null;
-  error.style.display = "none";
+  error.style.display = 'none';
   infoList.forEach((item) => {
-    item.style.border = "1px solid black";
+    item.style.border = '1px solid black';
   });
-  uploadButton.style.border = "1px solid black";
+  uploadButton.style.border = '1px solid black';
 };
