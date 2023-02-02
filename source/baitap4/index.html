@@ -5,10 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Bai tap 2</title>
 </head>
 <body>
-    <div class="container"></div>
+    <div class="container">
+        <div class="form">
+            <form action="">
+                <div class="form_item">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="form_item">
+                    <label for="email">Email</label>
+                    <input type="text" id="email">
+                </div>
+                <div class="form_item">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone">
+                </div>
+                <div class="form_item">
+                    <label for="birthday">Birthday</label>
+                    <input type="text" id="birthday">
+                </div>
+                <div class="form_item">
+                    <label for="password">Password</label>
+                    <input type="text" id="password">
+                </div>
+                <div class="form_item">
+                    <label for="confirm">Confirm Password</label>
+                    <input type="text" id="confirm">
+                </div>
+                <p style="display: none;" class="warning"><i class="fa-solid fa-triangle-exclamation"></i><span>Xin hãy nhập đầy đủ thông tin</span></p>
+                <div class="upload">
+                    <input style="display: none;" type="file">
+                    <p>Avatar upload</p>
+                    <img src="" alt="">
+                </div>
+                <div class="action">
+                    <button type="submit" class="add">Add</button>
+                    <button type="reset" class="reset">Reset</button>
+                </div>
+            </form>
+
+            <div class="screen">
+                <div class="screen_info">
+                    <p class="info_item">
+                        Full Name: <span></span>
+                    </p>
+                    <p class="info_item">
+                        Email: <span></span>
+                    </p>
+                    <p class="info_item">
+                        Phone: <span></span>
+                    </p>
+                    <p class="info_item">
+                        Birthday: <span></span>
+                    </p>
+                </div>
+                <div class="screen_avt">
+                    <img src="" alt="">
+                    <p>Avatar preview</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="./main.js"></script>
