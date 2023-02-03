@@ -34,6 +34,23 @@ upload.onchange = (e) => {
 };
 
 addBtn.onclick = (e) => {
+  addProfile(e)
+};
+
+resetBtn.onclick = () => {
+  resetProfile()
+};
+
+window.onkeydown = (e) => {
+  if (e.key === 'Shift') {
+    addProfile(e)
+  }
+  if (e.key === 'Delete') {
+    resetProfile()
+  }
+}
+
+function addProfile(e) {
   e.preventDefault();
   let warning = 'Xin hãy nhập đầy đủ thông tin!';
   const Person = {
@@ -152,9 +169,9 @@ addBtn.onclick = (e) => {
     textError.textContent = warning;
     error.style.display = 'block';
   }
-};
+}
 
-resetBtn.onclick = () => {
+function resetProfile() {
   infoList.forEach((item, index) => {
     if (infoListShow[index]) {
       infoListShow[index].textContent = '';
@@ -171,4 +188,4 @@ resetBtn.onclick = () => {
     item.style.border = '1px solid black';
   });
   uploadButton.style.border = '1px solid black';
-};
+}
