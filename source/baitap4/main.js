@@ -34,21 +34,21 @@ upload.onchange = (e) => {
 };
 
 addBtn.onclick = (e) => {
-  addProfile(e)
+  addProfile(e);
 };
 
 resetBtn.onclick = () => {
-  resetProfile()
+  resetProfile();
 };
 
 window.onkeydown = (e) => {
   if (e.key === 'Shift') {
-    addProfile(e)
+    addProfile(e);
   }
   if (e.key === 'Delete') {
-    resetProfile()
+    resetProfile();
   }
-}
+};
 
 function addProfile(e) {
   e.preventDefault();
