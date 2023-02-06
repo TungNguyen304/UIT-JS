@@ -9,9 +9,9 @@ const errEmail = $('.email p');
 const errPassword = $('.pass p');
 
 let limit = 3;
-const limit2 = 3;
+const limitFixed = 3;
 let time = 10;
-const time2 = 10;
+const timeFixed = 10;
 let waiting = null;
 
 showIcon.onclick = () => {
@@ -26,8 +26,7 @@ showIcon.onclick = () => {
   }
 };
 
-function checkEmail(e) {
-  e.preventDefault();
+function checkEmail() {
   if (!email.value) {
     errEmail.style.display = 'block';
     errEmail.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>Email không được để trống';
@@ -43,9 +42,9 @@ function checkEmail(e) {
   return false;
 }
 
-function checkPassword(e) {
-  e.preventDefault();
+function checkPassword() {
   if (!password.value) {
+    errPassword.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>Password không hợp lệ';
     errPassword.style.display = 'block';
     return false;
   } else {
@@ -71,10 +70,15 @@ password.onfocus = () => {
 };
 
 submitBtn.onclick = (e) => {
-  checkEmail(e) === true &&
-    checkPassword(e) === true &&
-    alert('Login Thành công');
-  if (checkEmail(e) && checkPassword(e)) {
+  e.preventDefault()
+  let count = 0;
+  if (checkEmail()) {
+    count++;
+  }
+  if (checkPassword()) {
+    count++
+  }
+  if (count === 2) {
     alert('Login Thành Công');
   } else {
     limit--;
@@ -90,13 +94,15 @@ submitBtn.onclick = (e) => {
 window.onunload = () => {
   if (limit === 0) {
     localStorage.setItem('wait', time);
+    localStorage.setItem('limitStore', limit);
   }
 };
 
 window.onload = () => {
   if (localStorage.getItem('wait')) {
     time = JSON.parse(localStorage.getItem('wait'));
-    localStorage.removeItem('wait');
+    limit = JSON.parse(localStorage.getItem('limitStore'))
+    waitingMethod()
     waiting = setInterval(waitingMethod, 1000);
   }
 };
@@ -107,9 +113,10 @@ function waitingMethod() {
     submitBtn.textContent = 'Sign in';
     submitBtn.style.backgroundColor = '#377BFF';
     submitBtn.style.pointerEvents = 'unset';
-    limit = limit2;
-    time = time2;
+    limit = limitFixed;
+    time = timeFixed;
     clearInterval(waiting);
+    localStorage.removeItem('wait');
   } else {
     submitBtn.textContent = time + ' s';
     submitBtn.style.backgroundColor = '#929fbb';
