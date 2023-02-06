@@ -15,20 +15,20 @@ const imgList = [
   'img9.jfif',
   'img10.jpg',
 ];
-let slide = undefined;
-let index = undefined;
+let slide = null;
+let index = null;
 
 start.onclick = () => {
   if (!slide) {
     slide = setInterval(() => {
       let randomNumber = randomMethod();
-      do {
+      while (true) {
         if (randomNumber === index) {
           randomNumber = randomMethod();
         } else {
           break;
         }
-      } while (true);
+      }
       index = randomNumber;
       screen.src = './images/' + imgList[randomNumber];
     }, 3000);
@@ -37,7 +37,7 @@ start.onclick = () => {
 
 end.onclick = () => {
   clearInterval(slide);
-  slide = undefined;
+  slide = null;
 };
 
 function randomMethod() {
