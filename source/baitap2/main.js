@@ -22,10 +22,10 @@ background.oninput = (e) => {
 btnList.forEach((item) => {
   item.onclick = (e) => {
     const fontStyle = e.target.dataset.style;
-      if (screen.style[fontStyle] === e.target.value.toLowerCase()) {
-        screen.style[fontStyle] = 'unset';
-      } else {
-        screen.style[fontStyle] = e.target.value;
-      }
+    if (screen.style[fontStyle] === e.target.value.toLowerCase()) {
+      screen.style[fontStyle] = 'unset';
+    } else {
+      screen.style[fontStyle] = e.target.value;
+    }
   };
 });
