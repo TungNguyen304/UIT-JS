@@ -70,13 +70,13 @@ password.onfocus = () => {
 };
 
 submitBtn.onclick = (e) => {
-  e.preventDefault()
+  e.preventDefault();
   let count = 0;
   if (checkEmail()) {
     count++;
   }
   if (checkPassword()) {
-    count++
+    count++;
   }
   if (count === 2) {
     alert('Login Thành Công');
@@ -101,8 +101,8 @@ window.onunload = () => {
 window.onload = () => {
   if (localStorage.getItem('wait')) {
     time = JSON.parse(localStorage.getItem('wait'));
-    limit = JSON.parse(localStorage.getItem('limitStore'))
-    waitingMethod()
+    limit = JSON.parse(localStorage.getItem('limitStore'));
+    waitingMethod();
     waiting = setInterval(waitingMethod, 1000);
   }
 };
