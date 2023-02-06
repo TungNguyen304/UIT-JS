@@ -21,26 +21,11 @@ background.oninput = (e) => {
 
 btnList.forEach((item) => {
   item.onclick = (e) => {
-    if (e.target.value === 'Italic') {
-      if (screen.style.fontStyle === 'italic') {
-        screen.style.fontStyle = 'normal';
+    const fontStyle = e.target.dataset.style;
+      if (screen.style[fontStyle] === e.target.value.toLowerCase()) {
+        screen.style[fontStyle] = 'unset';
       } else {
-        screen.style.fontStyle = 'italic';
+        screen.style[fontStyle] = e.target.value;
       }
-    }
-    if (e.target.value === 'Bold') {
-      if (screen.style.fontWeight === 'bold') {
-        screen.style.fontWeight = 'normal';
-      } else {
-        screen.style.fontWeight = 'bold';
-      }
-    }
-    if (e.target.value === 'Underline') {
-      if (screen.style.textDecoration === 'underline') {
-        screen.style.textDecoration = 'none';
-      } else {
-        screen.style.textDecoration = 'underline';
-      }
-    }
   };
 });
