@@ -14,34 +14,40 @@
             <form action="">
                 <div class="form_item">
                     <label for="name">Full name</label>
-                    <input type="text" id="name">
+                    <input type="text" id="fullname">
                 </div>
+                <p style="display: none;" class="warning warning_fullname"></p>
                 <div class="form_item">
                     <label for="email">Email</label>
-                    <input type="text" id="email">
+                    <input type="email" id="email">
                 </div>
+                <p style="display: none;" class="warning warning_email"></p>
                 <div class="form_item">
                     <label for="phone">Phone</label>
                     <input type="text" id="phone">
                 </div>
+                <p style="display: none;" class="warning warning_phone"></p>
                 <div class="form_item">
                     <label for="birthday">Birthday</label>
-                    <input type="text" id="birthday">
+                    <input type="date" id="birthday">
                 </div>
+                <p style="display: none;" class="warning warning_birthday"></p>
                 <div class="form_item">
                     <label for="password">Password</label>
-                    <input type="text" id="password">
+                    <input type="password" id="password">
                 </div>
+                <p style="display: none;" class="warning warning_password"></p>
                 <div class="form_item">
                     <label for="confirm">Confirm Password</label>
-                    <input type="text" id="confirm">
+                    <input type="password" id="confirm">
                 </div>
-                <p style="display: none;" class="warning"><i class="fa-solid fa-triangle-exclamation"></i><span>Xin hãy nhập đầy đủ thông tin</span></p>
-                <div class="upload">
-                    <input style="display: none;" type="file">
+                <p style="display: none;" class="warning warning_confirm"></p>
+                <div class="form_item upload">
+                    <input style="display: none;" id="img" type="file">
                     <p>Avatar upload</p>
                     <img src="" alt="">
                 </div>
+                <p style="display: none;" class="warning warning_img"></p>
                 <div class="action">
                     <button type="submit" class="add">Add</button>
                     <button type="reset" class="reset">Reset</button>
