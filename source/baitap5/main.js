@@ -44,10 +44,10 @@ inputRight.onkeydown = function(e) {
 function handleReStyleContent(item, actor, side) {
   item.onclick = () => {
     if (item.textContent === 'Đậm') {
-      handleCustomStyle(actor, 'Weight','bold');
+      handleCustomStyle(actor, 'Weight', 'bold');
     }
     if (item.textContent === 'Nghiêng') {
-      handleCustomStyle(actor, 'Style','italic');
+      handleCustomStyle(actor, 'Style', 'italic');
     }
     if (item.textContent === 'Reset') {
       handleResetMsg(side);
