@@ -56,10 +56,6 @@ window.onkeydown = (e) => {
 
 function addProfile(e) {
   e.preventDefault();
-  let warning = {
-    desc: 'Xin hãy nhập đầy đủ thông tin!',
-    type: 'name',
-  };
   const Person = {
     fullname: fullname.value,
     email: email.value,
@@ -97,7 +93,7 @@ function addProfile(e) {
     }
   });
 
-  const validateAvt = (function () {
+  const validateAvt = (function() {
     if (!upload.files[0]) {
       showError('img', 'Chọn avt trước khi add.');
       uploadButton.style.border = '1px solid red';
@@ -160,9 +156,7 @@ function resetProfile() {
 }
 
 function showError(type, desc) {
-  $(
-    `form .warning_${type}`
-  ).innerHTML = `<i class='fa-solid fa-triangle-exclamation'></i><span>${desc}</span>`;
+  $(`form .warning_${type}`).innerHTML = `<i class='fa-solid fa-triangle-exclamation'></i><span>${desc}</span>`;
   $(`form .warning_${type}`).style.display = 'block';
   $(`.form_item input#${type}`).style.border = '1px solid red';
 }
@@ -224,10 +218,7 @@ function validateBirthday(birthday, item) {
 
 function validatePassword(password, item) {
   if (!verifyPass.test(password)) {
-    showError(
-      item,
-      'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.'
-    );
+    showError(item, 'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.');
     return true;
   }
   hideError(item);
@@ -240,10 +231,7 @@ function validateComfirm(password, oldPass, item) {
     return true;
   } else {
     if (!verifyPass.test(password)) {
-      showError(
-        item,
-        'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.'
-      );
+      showError(item, 'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.');
       return true;
     }
     hideError(item);
