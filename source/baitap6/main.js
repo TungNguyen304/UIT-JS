@@ -5,7 +5,6 @@ const infoList = $$('.form_item input');
 const addBtn = $('.action .add');
 const deleteBtn = $('.action .delete');
 const error = $('form>p');
-const textError = $('form>p span');
 const table = $('table');
 const fullname = $('.form_item input#name');
 const phone = $('.form_item input#phone');
