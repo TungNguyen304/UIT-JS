@@ -7,10 +7,12 @@ const deleteBtn = $('.action .delete');
 const error = $('form>p');
 const textError = $('form>p span');
 const table = $('table');
+const fullname = $('.form_item input#name');
+const phone = $('.form_item input#phone');
+const email = $('.form_item input#email');
 
 const verifyEmail = /^\S+@([a-zA-Z]+\.)+[a-zA-z]{2,4}$/;
 const verifyPhone = /^0[0-9]{9}$/;
-const verifyName = /^[a-zA-z\s]{3,150}$/;
 
 let profileStore = [];
 const headTable = `<tr>
@@ -23,55 +25,32 @@ const headTable = `<tr>
 
 addBtn.onclick = (e) => {
   e.preventDefault();
-  let warning = 'Xin hãy nhập đầy đủ thông tin!';
   const Person = {
-    name: infoList[0].value,
-    phone: infoList[1].value,
-    email: infoList[2].value,
+    name: fullname.value,
+    phone: phone.value,
+    email: email.value,
   };
 
-  const validate = Object.keys(Person).every((item) => {
+  const validateEmpty = Object.keys(Person).filter((item) => {
     if (!Person[item]) {
-      return false;
-    }
-    return true;
-  });
-
-  infoList.forEach((item) => {
-    if (!validate && !item.value) {
-      item.style.border = '1px solid red';
-    } else {
-      item.style.border = '1px solid black';
-    }
-  });
-
-  const validate1 =
-    validate &&
-    Object.keys(Person).every((item) => {
-      if (item === 'name') {
-        if (!verifyName.test(Person[item])) {
-          warning = 'Name không hợp lệ.';
-          return false;
-        }
-      } else {
-        if (item === 'email') {
-          console.log(verifyEmail.test(Person[item]));
-          if (!verifyEmail.test(Person[item])) {
-            warning = 'Email không hợp lệ.';
-            return false;
-          }
-        } else {
-          if (item === 'phone') {
-            if (!verifyPhone.test(Person[item])) {
-              warning = 'Phone không hợp lệ.';
-              return false;
-            }
-          }
-        }
-      }
+      showError(item, `${item} không được bỏ trống`);
       return true;
-    });
-  if (validate1) {
+    }
+    hideError(item);
+  });
+
+  const validateValid = Object.keys(Person).filter((item) => {
+    if (Person[item] && item === 'name') {
+      return validate(Person[item], item);
+    }
+    if (Person[item] && item === 'email') {
+      return validate(Person[item], item, verifyEmail);
+    }
+    if (Person[item] && item === 'phone') {
+      return validate(Person[item], item, verifyPhone);
+    }
+  });
+  if (validateEmpty.length === 0 && validateValid.length === 0) {
     profileStore.push(Person);
     renderProfile();
     infoList.forEach((item) => {
@@ -79,9 +58,6 @@ addBtn.onclick = (e) => {
     });
     error.style.display = 'none';
     handleUpdateProfile();
-  } else {
-    textError.textContent = warning;
-    error.style.display = 'block';
   }
 };
 
@@ -184,4 +160,24 @@ function handleUpdateValue(item) {
     };
     handleUpdateProfile();
   };
+}
+
+function showError(item, desc) {
+  $(`form p.warning_${item}`).style.display = 'block';
+  $(`form p.warning_${item} span`).textContent = desc;
+  $(`.form_item input#${item}`).style.border = '1px solid red';
+}
+
+function hideError(item) {
+  $(`form p.warning_${item}`).style.display = 'none';
+  $(`.form_item input#${item}`).style.border = '1px solid black';
+}
+
+function validate(name, item, verify) {
+  if ((!verify && name.length > 150) || (verify && !verify.test(name))) {
+    showError(item, `${item} không hợp lệ.`);
+    return true;
+  }
+  hideError(item);
+  return false;
 }
