@@ -44,27 +44,13 @@ inputRight.onkeydown = function(e) {
 function handleReStyleContent(item, actor, side) {
   item.onclick = () => {
     if (item.textContent === 'Đậm') {
-      if (actor.style.fontWeight === 'bold') {
-        actor.style.fontWeight = 'unset';
-      } else {
-        actor.style.fontWeight = 'bold';
-      }
-    } else {
-      if (item.textContent === 'Nghiêng') {
-        if (actor.style.fontStyle === 'italic') {
-          actor.style.fontStyle = 'unset';
-        } else {
-          actor.style.fontStyle = 'italic';
-        }
-      } else {
-        if (side === 'left') {
-          msgStoreLeft = [];
-          screenLeft.innerHTML = '';
-        } else {
-          msgStoreRight = [];
-          screenRight.innerHTML = '';
-        }
-      }
+      handleCustomStyle(actor, 'Weight','bold');
+    }
+    if (item.textContent === 'Nghiêng') {
+      handleCustomStyle(actor, 'Style','italic');
+    }
+    if (item.textContent === 'Reset') {
+      handleResetMsg(side);
     }
   };
 }
@@ -89,6 +75,7 @@ function sendMsgForLeft() {
     screenRight.innerHTML = msgStoreRight.join(' ');
     inputLeft.value = '';
     inputLeft.focus();
+    handleScrollToBot();
   }
 }
 
@@ -112,5 +99,29 @@ function sendMsgForRight() {
     screenRight.innerHTML = msgStoreRight.join(' ');
     inputRight.value = '';
     inputRight.focus();
+    handleScrollToBot();
   }
+}
+
+function handleCustomStyle(actor, style, value) {
+  if (actor.style[`font${style}`] === value) {
+    actor.style[`font${style}`] = 'unset';
+  } else {
+    actor.style[`font${style}`] = value;
+  }
+}
+
+function handleResetMsg(side) {
+  if (side === 'left') {
+    msgStoreLeft = [];
+    screenLeft.innerHTML = '';
+  } else {
+    msgStoreRight = [];
+    screenRight.innerHTML = '';
+  }
+}
+
+function handleScrollToBot() {
+  screenRight.scrollTo(0, this.innerHeight);
+  screenLeft.scrollTo(0, this.innerHeight);
 }
