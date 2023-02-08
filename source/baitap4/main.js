@@ -74,19 +74,19 @@ function addProfile(e) {
 
   const validateValid = Object.keys(Person).filter((item) => {
     if (Person[item] && item === 'fullname') {
-      return validateName(Person[item], item);
+      return validate(Person[item], item, 'Full name không hợp lệ.');
     }
     if (Person[item] && item === 'email') {
-      return validateEmail(Person[item], item);
+      return validate(Person[item], item, 'Email không hợp lệ.', verifyEmail);
     }
     if (Person[item] && item === 'phone') {
-      return validatePhone(Person[item], item);
+      return validate(Person[item], item, 'Phone number không hợp lệ.', verifyPhone);
     }
     if (Person[item] && item === 'birthday') {
       return validateBirthday(Person[item], item);
     }
     if (Person[item] && item === 'password') {
-      return validatePassword(Person[item], item);
+      return validate(Person[item], item, 'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.', verifyPass);
     }
     if (Person[item] && item === 'confirm') {
       return validateComfirm(Person[item], Person['password'], item);
@@ -180,27 +180,9 @@ function renderPhone(phone, index) {
     phone.slice(0, 3) + '-' + phone.slice(3, 6) + '-' + phone.slice(6);
 }
 
-function validateName(name, item) {
-  if (name.length > 150) {
-    showError(item, 'Full name không hợp lệ.');
-    return true;
-  }
-  hideError(item);
-  return false;
-}
-
-function validateEmail(email, item) {
-  if (!verifyEmail.test(email)) {
-    showError(item, 'Email không hợp lệ.');
-    return true;
-  }
-  hideError(item);
-  return false;
-}
-
-function validatePhone(phone, item) {
-  if (!verifyPhone.test(phone)) {
-    showError(item, 'Phone number không hợp lệ.');
+function validate(content, item, desc, verify) {
+  if ((!verify && content.length > 150) || (verify && !verify.test(content))) {
+    showError(item, desc);
     return true;
   }
   hideError(item);
@@ -210,15 +192,6 @@ function validatePhone(phone, item) {
 function validateBirthday(birthday, item) {
   if (!verifyBirthday.test(birthday.split('-').reverse().join('/'))) {
     showError(item, 'Birthday phải có dạng dd/mm/YYYY.');
-    return true;
-  }
-  hideError(item);
-  return false;
-}
-
-function validatePassword(password, item) {
-  if (!verifyPass.test(password)) {
-    showError(item, 'Password: 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa.');
     return true;
   }
   hideError(item);
