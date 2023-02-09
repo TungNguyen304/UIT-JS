@@ -67,7 +67,7 @@ function handleReStyleContent(item, actor, side) {
 }
 
 function sendMsg(from, to, input) {
-  if(input.value) {
+  if (input.value) {
     msgStoreLeft.push(
       `<div class='msg msg__${to}'><span style='font-style:${
         input.style.fontStyle || ''
