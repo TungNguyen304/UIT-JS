@@ -22,12 +22,8 @@ start.onclick = () => {
   if (!slide) {
     slide = setInterval(() => {
       let randomNumber = randomMethod();
-      while (true) {
-        if (randomNumber === index) {
-          randomNumber = randomMethod();
-        } else {
-          break;
-        }
+      while (randomNumber === index) {
+        randomNumber = randomMethod();
       }
       index = randomNumber;
       screen.src = './images/' + imgList[randomNumber];
