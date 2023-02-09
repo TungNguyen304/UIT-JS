@@ -12,6 +12,9 @@ const screenRight = $('.right .screen');
 
 let msgStoreLeft = [];
 let msgStoreRight = [];
+const bold = 'bold';
+const italic = 'italic';
+const reset = 'reset';
 
 actionLeft.forEach((item) => {
   handleReStyleContent(item, inputLeft, 'left');
@@ -21,84 +24,68 @@ actionRight.forEach((item) => {
   handleReStyleContent(item, inputRight, 'right');
 });
 
-submitLeft.onclick = sendMsgForLeft;
+submitLeft.onclick = (e) => {
+  e.preventDefault();
+  sendMsg('left', 'right', inputLeft);
+};
+
 inputLeft.onkeydown = function(e) {
   if (e.key === 'Enter' && e.keyCode === 13) {
     e.preventDefault();
     if (this.value) {
-      sendMsgForLeft();
+      sendMsg('left', 'right', inputLeft);
     }
   }
 };
 
-submitRight.onclick = sendMsgForRight;
+submitRight.onclick = (e) => {
+  e.preventDefault();
+  sendMsg('right', 'left', inputRight);
+};
+
 inputRight.onkeydown = function(e) {
   if (e.key === 'Enter' && e.keyCode === 13) {
     e.preventDefault();
     if (this.value) {
-      sendMsgForRight();
+      sendMsg('right', 'left', inputRight);
     }
   }
 };
 
 function handleReStyleContent(item, actor, side) {
   item.onclick = () => {
-    if (item.textContent === 'Đậm') {
+    if (item.value === bold) {
       handleCustomStyle(actor, 'Weight', 'bold');
     }
-    if (item.textContent === 'Nghiêng') {
+    if (item.value === italic) {
       handleCustomStyle(actor, 'Style', 'italic');
     }
-    if (item.textContent === 'Reset') {
+    if (item.value === reset) {
       handleResetMsg(side);
     }
   };
 }
 
-function sendMsgForLeft() {
-  if (inputLeft.value) {
+function sendMsg(from, to, input) {
+  if(input.value) {
     msgStoreLeft.push(
-      `<div class='msg msg__right'><span style='font-style:${
-        inputLeft.style.fontStyle || ''
-      }; font-weight:${inputLeft.style.fontWeight || ''}'>${
-        inputLeft.value
+      `<div class='msg msg__${to}'><span style='font-style:${
+        input.style.fontStyle || ''
+      }; font-weight:${input.style.fontWeight || ''}'>${
+        input.value
       }</span></div>`,
     );
     msgStoreRight.push(
-      `<div class='msg msg__left'><span style='font-style:${
-        inputLeft.style.fontStyle || ''
-      }; font-weight:${inputLeft.style.fontWeight || ''}'>${
-        inputLeft.value
+      `<div class='msg msg__${from}'><span style='font-style:${
+        input.style.fontStyle || ''
+      }; font-weight:${input.style.fontWeight || ''}'>${
+        input.value
       }</span></div>`,
     );
     screenLeft.innerHTML = msgStoreLeft.join(' ');
     screenRight.innerHTML = msgStoreRight.join(' ');
-    inputLeft.value = '';
-    inputLeft.focus();
-    handleScrollToBot();
-  }
-}
-
-function sendMsgForRight() {
-  if (inputRight.value) {
-    msgStoreLeft.push(
-      `<div class='msg msg__left'><span style='font-style:${
-        inputRight.style.fontStyle || ''
-      }; font-weight:${inputRight.style.fontWeight || ''}'>${
-        inputRight.value
-      }</span></div>`,
-    );
-    msgStoreRight.push(
-      `<div class='msg msg__right'><span style='font-style:${
-        inputRight.style.fontStyle || ''
-      }; font-weight:${inputRight.style.fontWeight || ''}'>${
-        inputRight.value
-      }</span></div>`,
-    );
-    screenLeft.innerHTML = msgStoreLeft.join(' ');
-    screenRight.innerHTML = msgStoreRight.join(' ');
-    inputRight.value = '';
-    inputRight.focus();
+    input.value = '';
+    input.focus();
     handleScrollToBot();
   }
 }
