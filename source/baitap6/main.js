@@ -72,18 +72,10 @@ function renderProfile(Person) {
   if (Person) {
     const html = `<tr>
         <td class='tick'><input type='checkbox'></td>
-        <td><div data-position='${profileStore.length - 1}-name'>${
-      Person['name']
-    }</div></td>
-        <td><div data-position='${profileStore.length - 1}-phone'>${
-      Person['phone']
-    }</div></td>
-        <td><div data-position='${profileStore.length - 1}-email'>${
-      Person['email']
-    }</div></td>
-        <td class='delete'><button onClick='deleteForEachButton(${
-          profileStore.length
-        })'>Delete</button></td>
+        <td><div data-position='${profileStore.length - 1}-name'>${Person['name']}</div></td>
+        <td><div data-position='${profileStore.length - 1}-phone'>${Person['phone']}</div></td>
+        <td><div data-position='${profileStore.length - 1}-email'>${Person['email']}</div></td>
+        <td class='delete'><button onClick='deleteForEachButton(${profileStore.length})'>Delete</button></td>
     </tr>`;
     table.innerHTML += html;
   }
@@ -101,9 +93,7 @@ function renderAll() {
             <td><div data-position='${index}-name'>${item['name']}</div></td>
             <td><div data-position='${index}-phone'>${item['phone']}</div></td>
             <td><div data-position='${index}-email'>${item['email']}</div></td>
-            <td class='delete'><button onClick='deleteForEachButton(${
-              index + 1
-            })'>Delete</button></td>
+            <td class='delete'><button onClick='deleteForEachButton(${index + 1})'>Delete</button></td>
         </tr>`;
   });
   table.innerHTML = html.join('');
