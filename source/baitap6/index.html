@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Bai tap 6</title>
+</head>
+<body>
+    <div class="container">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input class='tick_all' type='checkbox'></th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <form action="">
+                <div class="form_item">
+                    <label for="name">Name</label>
+                    <input type="text" id="name">
+                </div>
+                <p style="display: none;" class="warning warning_name"><i class="fa-solid fa-triangle-exclamation"></i><span></span></p>
+                <div class="form_item">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone">
+                </div>
+                <p style="display: none;" class="warning warning_phone"><i class="fa-solid fa-triangle-exclamation"></i><span></span></p>
+                <div class="form_item">
+                    <label for="email">Email</label>
+                    <input type="email" id="email">
+                </div>
+                <p style="display: none;" class="warning warning_email"><i class="fa-solid fa-triangle-exclamation"></i><span></span></p>
+                
+                <div class="action">
+                    <button type="submit" class="add">Add</button>
+                    <button type="reset" class="delete">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
