@@ -10,8 +10,8 @@ const errPassword = $('.pass p');
 
 let limit = 3;
 const limitFixed = 3;
-let time = 10;
-const timeFixed = 10;
+let time = 60;
+const timeFixed = 60;
 let waiting = null;
 
 showIcon.onclick = () => {
@@ -71,14 +71,8 @@ password.onfocus = () => {
 
 submitBtn.onclick = (e) => {
   e.preventDefault();
-  let count = 0;
-  if (checkEmail()) {
-    count++;
-  }
-  if (checkPassword()) {
-    count++;
-  }
-  if (count === 2) {
+  if (checkEmail() && checkPassword()) {
+    reset()
     alert('Login Thành Công');
   } else {
     limit--;
@@ -110,16 +104,20 @@ window.onload = () => {
 function waitingMethod() {
   time--;
   if (time === -1) {
-    submitBtn.textContent = 'Sign in';
-    submitBtn.style.backgroundColor = '#377BFF';
-    submitBtn.style.pointerEvents = 'unset';
-    limit = limitFixed;
-    time = timeFixed;
-    clearInterval(waiting);
-    localStorage.removeItem('wait');
+    reset()
   } else {
     submitBtn.textContent = time + ' s';
     submitBtn.style.backgroundColor = '#929fbb';
     submitBtn.style.pointerEvents = 'none';
   }
+}
+
+function reset() {
+  submitBtn.textContent = 'Sign in';
+  submitBtn.style.backgroundColor = '#377BFF';
+  submitBtn.style.pointerEvents = 'unset';
+  limit = limitFixed;
+  time = timeFixed;
+  clearInterval(waiting);
+  localStorage.removeItem('wait');
 }
