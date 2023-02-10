@@ -112,11 +112,7 @@ function handleUpdateProfile() {
   const listInfo = $$('table td div');
   listInfo.forEach((item) => {
     item.ondblclick = () => {
-      const inputList = $('.change');
-      if (inputList) {
-        inputList.classList.remove('change');
-      }
-      item.classList.add('change');
+      item.className = 'change';
       handleUpdateValue(item);
     };
   });
@@ -216,8 +212,10 @@ function replaceInputToDiv(item) {
     item = $('.change');
     item.textContent = inputHTML;
     item.ondblclick = () => {
+      item.className = 'change';
       handleUpdateValue(item);
     };
+    item.className = '';
   } else {
     setTimeout(() => {
       item.focus();
