@@ -72,7 +72,7 @@ password.onfocus = () => {
 submitBtn.onclick = (e) => {
   e.preventDefault();
   if (checkEmail() && checkPassword()) {
-    reset()
+    reset();
     alert('Login Thành Công');
   } else {
     limit--;
@@ -104,7 +104,7 @@ window.onload = () => {
 function waitingMethod() {
   time--;
   if (time === -1) {
-    reset()
+    reset();
   } else {
     submitBtn.textContent = time + ' s';
     submitBtn.style.backgroundColor = '#929fbb';
