@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    width: 500px;
+    box-shadow: 0px 4px 26px 0px #ccc;
+    border-radius: 10px;
+    padding: 30px 20px;
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+label {
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+input {
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: #EAEFF5;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.pass, .email {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #EAEFF5;
+    border-radius: 5px;
+    padding-right: 10px;
+}
+
+.pass input {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.pass i {
+    color: #aaa;
+    cursor: pointer;
+}
+
+.pass i:active {
+    transform: scale(1.1);
+}
+
+.forgot {
+    text-align: end;
+    color: #628be4;
+    margin-top: 30px;
+}
+
+button {
+    border: none;
+    background-color: #377BFF;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    width: 100%;
+    user-select: none;
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.question {
+    text-align: center;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    align-items: center;
+    justify-content: end;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+}
+
+.error i {
+    margin-right: 10px;
+    color: red;
+}
